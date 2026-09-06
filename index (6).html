@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="description"
+    content="خدمات پرینت سه‌بعدی، ساخت نمونه اولیه، قطعات مهندسی و تولید کم‌تیراژ با روش‌های FDM، SLA و SLS." />
+  <title>Caspian 3D Lab | خدمات پرینت سه‌بعدی</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #0b0d10;
+      --surface: #11151a;
+      --surface-2: #171c22;
+      --text: #f2f5f7;
+      --muted: #a8b0b8;
+      --line: #252c34;
+      --accent: #f5a623;
+      --accent-2: #ffbf52;
+      --max: 1180px;
+      --radius: 22px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html {
+      scroll-behavior: smooth
+    }
+
+    body {
+      margin: 0;
+      font-family: "Vazirmatn", "Sahel", Tahoma, sans-serif;
+      background:
+        radial-gradient(circle at 85% 8%, rgba(245, 166, 35, .12), transparent 28%),
+        var(--bg);
+      color: var(--text);
+      line-height: 1.9;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    img {
+      max-width: 100%;
+      display: block
+    }
+
+    button {
+      font: inherit
+    }
+
+    .container {
+      width: min(var(--max), calc(100% - 40px));
+      margin: auto
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(16px);
+      background: rgba(11, 13, 16, .72);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .nav-inner {
+      min-height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 900;
+      font-size: 1.12rem
+    }
+
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, var(--accent), #ff7d1f);
+      display: grid;
+      place-items: center;
+      color: #17100a;
+      font-weight: 900;
+      box-shadow: 0 10px 30px rgba(245, 166, 35, .25)
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      color: #c7cdd3;
+      font-size: .95rem
+    }
+
+    .nav-links a:hover {
+      color: var(--accent)
+    }
+
+    .menu-btn {
+      display: none;
+      background: none;
+      border: 0;
+      color: #fff;
+      font-size: 1.5rem
+    }
+
+    .hero {
+      min-height: calc(100vh - 72px);
+      display: grid;
+      align-items: center;
+      padding: 76px 0 64px;
+      overflow: hidden
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr .92fr;
+      gap: 64px;
+      align-items: center
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid rgba(245, 166, 35, .28);
+      background: rgba(245, 166, 35, .08);
+      color: #ffd48c;
+      padding: 6px 12px;
+      border-radius: 999px;
+      font-size: .86rem
+    }
+
+    h1 {
+      font-size: clamp(2.5rem, 5.7vw, 5.4rem);
+      line-height: 1.15;
+      margin: 20px 0 22px;
+      letter-spacing: -2px
+    }
+
+    h1 span {
+      color: var(--accent)
+    }
+
+    .lead {
+      color: var(--muted);
+      font-size: 1.08rem;
+      max-width: 680px
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 30px
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 0 22px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      font-weight: 700;
+      transition: .25s
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #18120a;
+      border-color: var(--accent)
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      background: var(--accent-2)
+    }
+
+    .btn-ghost:hover {
+      border-color: #5d6670;
+      background: #15191e
+    }
+
+    .stats {
+      display: flex;
+      gap: 28px;
+      margin-top: 34px;
+      flex-wrap: wrap
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.35rem;
+      color: #fff
+    }
+
+    .stat span {
+      color: var(--muted);
+      font-size: .87rem
+    }
+
+    .printer {
+      min-height: 470px;
+      position: relative;
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, .08);
+      background:
+        linear-gradient(145deg, rgba(255, 255, 255, .055), rgba(255, 255, 255, .015));
+      box-shadow: 0 35px 100px rgba(0, 0, 0, .45);
+      overflow: hidden
+    }
+
+    .printer:before {
+      content: "";
+      position: absolute;
+      inset: 9% 14% 13%;
+      border: 6px solid #404852;
+      border-bottom-width: 14px;
+      border-radius: 6px
+    }
+
+    .printer:after {
+      content: "";
+      position: absolute;
+      width: 130px;
+      height: 130px;
+      right: 50%;
+      bottom: 22%;
+      transform: translateX(50%);
+      background: linear-gradient(145deg, #ffbb47, #b96a10);
+      clip-path: polygon(50% 0, 92% 23%, 92% 74%, 50% 100%, 8% 74%, 8% 23%);
+      filter: drop-shadow(0 15px 18px rgba(245, 166, 35, .2))
+    }
+
+    .print-head {
+      position: absolute;
+      z-index: 3;
+      top: 23%;
+      right: 50%;
+      transform: translateX(50%);
+      width: 92px;
+      height: 56px;
+      border-radius: 10px;
+      background: #262d35;
+      border: 1px solid #505b66;
+      box-shadow: 0 8px 25px #000;
+    }
+
+    .print-head:after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 24px;
+      right: 41px;
+      bottom: -22px;
+      background: var(--accent);
+      clip-path: polygon(25% 0, 75% 0, 100% 75%, 50% 100%, 0 75%)
+    }
+
+    .grid-floor {
+      position: absolute;
+      left: 12%;
+      right: 12%;
+      bottom: 13%;
+      height: 70px;
+      background:
+        linear-gradient(rgba(255, 255, 255, .08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, .08) 1px, transparent 1px);
+      background-size: 18px 18px;
+      transform: perspective(180px) rotateX(55deg)
+    }
+
+    section {
+      padding: 92px 0
+    }
+
+    .section-head {
+      max-width: 720px;
+      margin-bottom: 40px
+    }
+
+    .kicker {
+      color: var(--accent);
+      font-weight: 800;
+      font-size: .9rem
+    }
+
+    h2 {
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      line-height: 1.3;
+      margin: 8px 0 14px
+    }
+
+    .section-head p {
+      color: var(--muted);
+      margin: 0
+    }
+
+    .methods {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px
+    }
+
+    .card {
+      background: linear-gradient(180deg, var(--surface-2), var(--surface));
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px;
+      transition: .3s
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      border-color: #454e58
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      background: rgba(245, 166, 35, .1);
+      color: var(--accent);
+      font-size: 1.4rem;
+      margin-bottom: 20px
+    }
+
+    .card h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: .94rem
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px
+    }
+
+    .tag {
+      font-size: .78rem;
+      color: #d6dbe0;
+      border: 1px solid #303842;
+      border-radius: 999px;
+      padding: 4px 9px
+    }
+
+    .process {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      counter-reset: step
+    }
+
+    .step {
+      position: relative;
+      padding: 25px;
+      border-top: 1px solid var(--line);
+      counter-increment: step
+    }
+
+    .step:before {
+      content: "0" counter(step);
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: rgba(245, 166, 35, .28)
+    }
+
+    .step h3 {
+      margin: 4px 0
+    }
+
+    .step p {
+      color: var(--muted);
+      font-size: .9rem;
+      margin: 0
+    }
+
+    .portfolio {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 18px
+    }
+
+    .work {
+      min-height: 290px;
+      border-radius: 22px;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--line);
+      background: #15191f
+    }
+
+    .work:nth-child(1),
+    .work:nth-child(4) {
+      grid-column: span 7
+    }
+
+    .work:nth-child(2),
+    .work:nth-child(3) {
+      grid-column: span 5
+    }
+
+    .work-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 60% 40%, rgba(245, 166, 35, .36), transparent 14%),
+        linear-gradient(135deg, #20262d, #0f1216 65%);
+    }
+
+    .shape {
+      position: absolute;
+      inset: 20% 26%;
+      border: 12px solid #68737d;
+      border-radius: 18px;
+      transform: rotate(-11deg)
+    }
+
+    .shape.circle {
+      border-radius: 50%;
+      inset: 19% 34%
+    }
+
+    .shape.gear {
+      border-style: dashed;
+      transform: rotate(18deg)
+    }
+
+    .work-info {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 36px 22px 20px;
+      background: linear-gradient(transparent, rgba(0, 0, 0, .9))
+    }
+
+    .work-info small {
+      color: var(--accent)
+    }
+
+    .work-info h3 {
+      margin: 3px 0 0
+    }
+
+    .why {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center
+    }
+
+    .features {
+      display: grid;
+      gap: 14px
+    }
+
+    .feature {
+      display: flex;
+      gap: 14px;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: var(--surface)
+    }
+
+    .feature b {
+      display: block;
+      margin-bottom: 2px
+    }
+
+    .feature span {
+      color: var(--muted);
+      font-size: .9rem
+    }
+
+    .bullet {
+      min-width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: rgba(245, 166, 35, .12);
+      display: grid;
+      place-items: center;
+      color: var(--accent);
+      font-weight: 900
+    }
+
+    .cta {
+      padding: 54px;
+      border: 1px solid rgba(245, 166, 35, .22);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 80% 0, rgba(245, 166, 35, .18), transparent 30%),
+        var(--surface);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 30px
+    }
+
+    .cta h2 {
+      margin: 0 0 8px;
+      font-size: clamp(1.8rem, 4vw, 3rem)
+    }
+
+    .cta p {
+      margin: 0;
+      color: var(--muted)
+    }
+
+    footer {
+      padding: 34px 0;
+      border-top: 1px solid var(--line);
+      color: #848d96;
+      font-size: .9rem
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: .7s
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none
+    }
+
+    @media(max-width:900px) {
+
+      .hero-grid,
+      .why {
+        grid-template-columns: 1fr
+      }
+
+      .printer {
+        min-height: 360px
+      }
+
+      .methods {
+        grid-template-columns: 1fr
+      }
+
+      .process {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .nav-links {
+        position: absolute;
+        top: 72px;
+        right: 20px;
+        left: 20px;
+        background: #11151a;
+        border: 1px solid var(--line);
+        border-radius: 16px;
+        padding: 18px;
+        display: none;
+        flex-direction: column;
+        gap: 8px
+      }
+
+      .nav-links.open {
+        display: flex
+      }
+
+      .menu-btn {
+        display: block
+      }
+    }
+
+    @media(max-width:640px) {
+      .container {
+        width: min(100% - 26px, var(--max))
+      }
+
+      section {
+        padding: 68px 0
+      }
+
+      h1 {
+        font-size: 2.7rem
+      }
+
+      .process {
+        grid-template-columns: 1fr
+      }
+
+      .portfolio {
+        display: grid;
+        grid-template-columns: 1fr
+      }
+
+      .work,
+      .work:nth-child(n) {
+        grid-column: auto;
+        min-height: 250px
+      }
+
+      .cta {
+        padding: 30px 22px;
+        flex-direction: column;
+        align-items: flex-start
+      }
+
+      .stats {
+        gap: 18px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="nav">
+    <div class="container nav-inner">
+      <a class="brand" href="#home">
+        <span class="brand-mark">3D</span>
+        <span>Caspian 3D Lab</span>
+      </a>
+
+      <div class="nav-links" id="navLinks">
+        <a href="#services">روش‌های ساخت</a>
+        <a href="#process">فرآیند سفارش</a>
+        <a href="#portfolio">نمونه‌کارها</a>
+        <a href="#about">چرا ما؟</a>
+        <a href="#contact">تماس</a>
+      </div>
+
+      <button class="menu-btn" id="menuBtn" aria-label="باز کردن منو">☰</button>
+    </div>
+  </nav>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div>
+          <span class="eyebrow">● ساخت ایده‌ها، لایه به لایه</span>
+          <h1>خدمات حرفه‌ای <span>پرینت سه‌بعدی</span> و ساخت قطعات</h1>
+          <p class="lead">
+            از نمونه‌سازی سریع تا ساخت قطعات کاربردی و تولید کم‌تیراژ؛
+            فایل سه‌بعدی شما را با انتخاب متریال و روش ساخت مناسب به یک قطعه واقعی تبدیل می‌کنیم.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#portfolio" class="btn btn-primary">مشاهده نمونه‌کارها</a>
+            <a href="#services" class="btn btn-ghost">آشنایی با روش‌ها</a>
+          </div>
+
+          <div class="stats">
+            <div class="stat"><strong>FDM</strong><span>قطعات مهندسی و کاربردی</span></div>
+            <div class="stat"><strong>SLA</strong><span>جزئیات و دقت بالا</span></div>
+            <div class="stat"><strong>CAD</strong><span>طراحی و مهندسی معکوس</span></div>
+          </div>
+        </div>
+
+        <div class="printer" aria-label="تصویر گرافیکی پرینتر سه‌بعدی">
+          <div class="print-head"></div>
+          <div class="grid-floor"></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">روش‌های ساخت افزودنی</span>
+          <h2>برای هر قطعه، یک تکنولوژی مناسب</h2>
+          <p>انتخاب روش چاپ به دقت، استحکام، جنس، ابعاد، کیفیت سطح و تیراژ موردنیاز بستگی دارد.</p>
+        </div>
+
+        <div class="methods">
+          <article class="card reveal">
+            <div class="icon">▰</div>
+            <h3>FDM / FFF</h3>
+            <p>
+              ساخت قطعه با ذوب و لایه‌گذاری فیلامنت. اقتصادی، سریع و مناسب برای
+              نمونه اولیه، قطعات صنعتی، فیکسچر، قاب و قطعات کاربردی.
+            </p>
+            <div class="tags">
+              <span class="tag">PLA</span><span class="tag">PETG</span>
+              <span class="tag">ABS</span><span class="tag">ASA</span><span class="tag">TPU</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">◈</div>
+            <h3>SLA / MSLA</h3>
+            <p>
+              چاپ رزینی با دقت و کیفیت سطح بسیار بالا؛ مناسب برای قطعات کوچک،
+              مدل‌های ظریف، ماکت، قطعات دکوراتیو و نمونه‌های دقیق.
+            </p>
+            <div class="tags">
+              <span class="tag">Standard Resin</span><span class="tag">Tough</span>
+              <span class="tag">High Detail</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">◇</div>
+            <h3>طراحی سه‌بعدی</h3>
+            <p>
+              طراحی و مدل‌سازی سه‌بعدی قطعات از روی نمونه، نقشه یا ایده؛
+              مناسب برای قطعات مهندسی، قطعات جایگزین، نمونه‌سازی و آماده‌سازی مدل برای چاپ.
+            </p>
+            <div class="tags">
+              <span class="tag">CAD</span><span class="tag">SolidWorks</span>
+              <span class="tag">Reverse Engineering</span>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="icon">⌁</div>
+            <h3>اسکن سه‌بعدی</h3>
+            <p>
+              برداشت هندسه قطعات و تبدیل آن به مدل سه‌بعدی قابل ویرایش یا استفاده
+              در فرآیند مهندسی معکوس و ساخت مجدد.
+            </p>
+            <div class="tags">
+              <span class="tag">3D Scan</span><span class="tag">Mesh</span>
+              <span class="tag">Reverse Engineering</span>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="process">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">از فایل تا قطعه</span>
+          <h2>فرآیند ساخت چگونه انجام می‌شود؟</h2>
+        </div>
+
+        <div class="process">
+          <div class="step reveal">
+            <h3>بررسی پروژه</h3>
+            <p>فایل، نمونه فیزیکی یا نیازمندی‌های پروژه بررسی می‌شود.</p>
+          </div>
+          <div class="step reveal">
+            <h3>طراحی و آماده‌سازی</h3>
+            <p>در صورت نیاز اسکن، طراحی سه‌بعدی و آماده‌سازی مدل انجام می‌شود.</p>
+          </div>
+          <div class="step reveal">
+            <h3>ساخت قطعه</h3>
+            <p>مدل با تنظیمات مناسب چاپ و در صورت نیاز پس‌پردازش می‌شود.</p>
+          </div>
+          <div class="step reveal">
+            <h3>کنترل نهایی</h3>
+            <p>ابعاد، ظاهر و کیفیت قطعه قبل از تحویل بررسی می‌شود.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="portfolio">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="kicker">نمونه‌کارها</span>
+          <h2>چند نمونه از پروژه‌های ساخته‌شده</h2>
+          <p>این تصاویر فعلاً جایگزین گرافیکی هستند؛ عکس پروژه‌های واقعی خودتان را در این بخش قرار دهید.</p>
+        </div>
+
+        <div class="portfolio">
+          <article class="work reveal">
+            <div class="work-bg"></div>
+            <div class="shape"></div>
+            <div class="work-info"><small>FDM • ASA</small>
+              <h3>قطعه کاربردی خودرو</h3>
+            </div>
+          </article>
+
+          <article class="work reveal">
+            <div class="work-bg"></div>
+            <div class="shape circle"></div>
+            <div class="work-info"><small>FDM • PETG</small>
+              <h3>قطعه مکانیکی سفارشی</h3>
+            </div>
+          </article>
+
+          <article class="work reveal">
+            <div class="work-bg"></div>
+            <div class="shape gear"></div>
+            <div class="work-info"><small>Prototype</small>
+              <h3>نمونه اولیه مهندسی</h3>
+            </div>
+          </article>
+
+          <article class="work reveal">
+            <div class="work-bg"></div>
+            <div class="shape"></div>
+            <div class="work-info"><small>Low Volume Production</small>
+              <h3>تولید کم‌تیراژ قطعات</h3>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="container why">
+        <div class="section-head reveal">
+          <span class="kicker">ساخت دقیق و کاربردی</span>
+          <h2>تمرکز ما فقط چاپ کردن نیست؛ ساخت قطعه قابل استفاده است.</h2>
+          <p>
+            پارامترهای چاپ، جنس، ضخامت دیواره، اینفیل، جهت قرارگیری قطعه و تلرانس‌ها
+            مستقیماً روی نتیجه نهایی اثر دارند. برای هر پروژه این موارد بر اساس کاربرد قطعه انتخاب می‌شوند.
+          </p>
+        </div>
+
+        <div class="features">
+          <div class="feature reveal">
+            <div class="bullet">✓</div>
+            <div><b>انتخاب متریال مناسب</b><span>بر اساس دما، ضربه، انعطاف، UV و شرایط کاری.</span></div>
+          </div>
+          <div class="feature reveal">
+            <div class="bullet">✓</div>
+            <div><b>بهینه‌سازی برای ساخت</b><span>بررسی مدل برای کاهش ساپورت، زمان ساخت و هزینه.</span></div>
+          </div>
+          <div class="feature reveal">
+            <div class="bullet">✓</div>
+            <div><b>مناسب نمونه‌سازی و تولید محدود</b><span>از یک قطعه آزمایشی تا سری‌های کوچک.</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="cta reveal">
+          <div>
+            <span class="kicker">شروع یک پروژه</span>
+            <h2>فایل سه‌بعدی آماده دارید؟</h2>
+            <p>برای بررسی روش ساخت و انتخاب متریال مناسب با ما در ارتباط باشید.</p>
+          </div>
+          <a class="btn btn-primary" href="https://wa.me/+989112195322" target="_blank" rel="noopener">ارسال فایل و
+            مشاوره در واتساپ</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>© <span id="year"></span> Caspian 3D Lab — خدمات پرینت سه‌بعدی</span>
+      <span>طراحی و ساخت • نمونه‌سازی • تولید کم‌تیراژ</span>
+    </div>
+  </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menuBtn');
+    const navLinks = document.getElementById('navLinks');
+
+    menuBtn.addEventListener('click', () => navLinks.classList.toggle('open'));
+
+    document.querySelectorAll('#navLinks a').forEach(link => {
+      link.addEventListener('click', () => navLinks.classList.remove('open'));
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('show');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, {threshold: 0.12});
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>
